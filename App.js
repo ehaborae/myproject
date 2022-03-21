@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
-  const [outPutText, setOutPutText] = useState('Open up App.js to start working on your app!');
-  const [outPutText2, setOutPutText2] = useState(outPutText);
+
 
   return (
-    <View style={styles.container}>
-      <Text>{outPutText}</Text>
-      <Button title='My First Button' onPress={
-        () => setOutPutText('Changed Text!')
-      } />
+    <View style={
+      {padding:20}
+    }>
+      <Button title='My First Button' />
+      <View >
+        <TextInput />
+      </View>
+      <Button title='My First Button' />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
