@@ -8,7 +8,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>{outPutText}</Text>
-      <Button title='My Button' onPress={
+      <Button title='My First Button' onPress={
         () => setOutPutText('Changed Text!')
       } />
     </View>
