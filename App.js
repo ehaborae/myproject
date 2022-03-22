@@ -6,13 +6,35 @@ export default function App() {
 
   return (
     <View style={
-      {padding:20}
+      style.appContainer
     }>
-      <Button title='My First Button' />
-      <View >
-        <TextInput />
+      <View style = {
+        style.inputContainre
+      }>
+        <TextInput placeholder='Yor cours egoal!' style = {style.textInput}/>
+        <Button title='Add Goal' />
       </View>
-      <Button title='My First Button' />
+      <View >
+        <Text>List Of Goals...</Text>
+      </View>
+
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  appContainer: {
+    padding: 50,
+  },
+  inputContainre: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textInput: {
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#cccccc',
+    width: '80%',
+    marginRight:8,
+  },
+});
