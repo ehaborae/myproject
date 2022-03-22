@@ -11,6 +11,9 @@ export default function App() {
       <Button title='My First Button' />
       <View >
         <TextInput />
+        <Text>
+        Ehab
+        </Text>
       </View>
       <Button title='My First Button' />
     </View>
