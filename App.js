@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 
 
 import GoalItem from './components/GoalItem';
 
+
 export default function App() {
 
   // register a new state here
@@ -37,7 +38,7 @@ export default function App() {
       <View style={style.goalsContainer}>
         <FlatList data={courseGoals} renderItem={itemData => {
 
-          return <GoalItem text={itemData.item.text}/>;
+          return <GoalItem text={itemData.item.text} />;
         }} keyExtractor={(item, index) => {
           return item.id;
         }} />
