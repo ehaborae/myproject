@@ -14,6 +14,10 @@ export default function App() {
     setModalVisibility(true);
   }
 
+  function closeModalHandeler() {
+    setModalVisibility(false);
+  }
+
   const [courseGoals, setCoursGoals] = useState([]);
   // this function is to handel get data and submiting it
   function addGoalHandler(enteredGoalText) {
@@ -35,7 +39,7 @@ export default function App() {
       <Button title='Add new Goal' color='#5e0acc' onPress={startAddGoalHandeler} />
 
 
-      {modalIsVisible && <GoalInput onAddGoal={addGoalHandler} visible={modalIsVisible} />}
+      {modalIsVisible && <GoalInput onAddGoal={addGoalHandler} visible={modalIsVisible} cancelGoalHandler={closeModalHandeler} />}
 
       <View style={style.goalsContainer}>
         <FlatList data={courseGoals} renderItem={itemData => {

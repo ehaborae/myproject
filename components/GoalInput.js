@@ -16,15 +16,28 @@ function GoalInput(props) {
     function addGoalHandler() {
         props.onAddGoal(enteredGoalText);
         setEnteredGoalText('');
+        cancelGoalHandler();
+    }
+
+    function cancelGoalHandler() {
+        props.cancelGoalHandler();
+
     }
 
     return (
-        <Modal visible = {props.visible} animationType = 'slide' >
-            <View style={
-                style.inputContainre
-            }>
+        <Modal visible={props.visible} animationType='slide' >
+            <View style={style.inputContainre}>
                 <TextInput placeholder='Yor cours egoal!' style={style.textInput} onChangeText={goalInputHandler} value={enteredGoalText} />
-                <Button title='Add Goal' onPress={addGoalHandler} />
+                <View style={style.buttonsContainer}>
+                    <View style={style.button}>
+                        <Button title='Add Goal' onPress={addGoalHandler} />
+                    </View>
+                    <View style={style.space16}></View>
+
+                    <View style={style.button}>
+                        <Button title='cancel' onPress={cancelGoalHandler} />
+                    </View>
+                </View>
             </View>
         </Modal>
 
@@ -36,22 +49,33 @@ export default GoalInput;
 const style = StyleSheet.create(
     {
         inputContainre: {
+            flex: 1,
             alignItems: 'center',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            paddingHorizontal: 16,
+            justifyContent: 'center',
             paddingBottom: 30,
             borderBottomWidth: 1,
-            flex: 1,
             marginBottom: 30,
             borderColor: '#cccccc',
         },
         textInput: {
+            marginHorizontal: 16,
             padding: 4,
-            paddingLeft: 8,
+            width: '100%',
             borderWidth: 1,
             borderColor: '#cccccc',
+        },
+        buttonsContainer: {
+            marginTop: 16,
+            flexDirection: 'row',
+        },
+        button: {
+            // width: '40%',
             flex: 1,
-            marginRight: 8,
+            backgroundColor: 'red',
+        },
+        space16: {
+            width: 16,
         },
 
     }
