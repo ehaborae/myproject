@@ -1,14 +1,44 @@
 
-import { TextInput, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, View, StyleSheet, Alert, Text } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 
 
 
 //this is the main class in this screen here we return UI
-function StartGameScreen() {
+function StartGameScreen({ onConfirmeNumber }) {
+
+    const [enteredNumber, setEnteredNumber] = useState('');
+
+    function numberInputHandeler(enteredText) {
+        setEnteredNumber(enteredText);
+    }
+
+    function confirmeInputHandeler() {
+        console.log('confirme');
+        console.log(enteredNumber);
+        const chosenNumber = parseInt(enteredNumber);
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            //show alert ...
+            Alert.alert('Invalid number!', 'Number has to be a number between 1 and 99',
+                [{ text: 'Okay', style: 'destructive', onPress: resetInputHandeler }]
+            );
+            return;
+        }
+
+        onConfirmeNumber(chosenNumber);
+
+    }
+
+    function resetInputHandeler() {
+        console.log('Reset');
+        setEnteredNumber('');
+    }
 
     return (
         <View style={style.inputContainer}>
+
+            <Text style={style.textStyle}>Gess A Number</Text>
             <TextInput
                 style={
                     style.numberInput
@@ -17,15 +47,17 @@ function StartGameScreen() {
                 keyboardType='number-pad'
                 autoCapitalize='none'
                 autoCorrect={false}
+                value={enteredNumber}
+                onChangeText={numberInputHandeler}
 
             />
             <View style={style.buttonsContainer}>
                 <View style={style.buttonContainer}>
-                    <PrimaryButton>Reset</PrimaryButton>
+                    <PrimaryButton onPress={resetInputHandeler}>Reset</PrimaryButton>
                 </View>
 
                 <View style={style.buttonContainer}>
-                    <PrimaryButton>Confirm</PrimaryButton>
+                    <PrimaryButton onPress={confirmeInputHandeler}>Confirm</PrimaryButton>
                 </View>
 
             </View>
@@ -74,5 +106,8 @@ const style = StyleSheet.create({
     },
     buttonContainer: {
         flex: 1,
+    },
+    textStyle: {
+        color: 'white',
     },
 });

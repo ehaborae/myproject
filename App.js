@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ImageBackground } from 'react-native';
+import GameScreen from './screens/GameScreen';
 import StartGameScreen from './screens/StartGameScreen';
 
+
 export default function App() {
+
+
+  const [userNumber, setUserNumber] = useState();
+
+  function pickedNuberHandeler(pickedNuber) {
+    setUserNumber(pickedNuber);
+  }
+
+  let screen = <StartGameScreen onConfirmeNumber={pickedNuberHandeler} />;
+  if (userNumber) {
+    screen = <GameScreen />;
+  }
 
 
   return (
@@ -16,7 +30,7 @@ export default function App() {
         style={style.rootScreen}
         imageStyle={style.rootScreen}
       >
-        <StartGameScreen />
+        {screen}
       </ImageBackground>
 
     </View>
@@ -29,5 +43,5 @@ const style = StyleSheet.create({
   rootScreen: {
     flex: 1,
     backgroundColor: '#72063c',
-    },
+  },
 });
