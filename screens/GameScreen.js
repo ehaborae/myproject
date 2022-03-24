@@ -1,8 +1,79 @@
 
-import { Text } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
+import Title from '../components/Title';
 
-function GameScreen() {
-    return <Text>Game Screen</Text>
+import { useState } from 'react';
+import NumberContainer from '../components/NumberContainer';
+import PrimaryButton from '../components/PrimaryButton';
+
+
+function generateRandomeBetween(min, max, exclude) {
+
+    const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+    if (rndNum == exclude) {
+        return generateRandomeBetween(min, max, exclude);
+
+    } else {
+        return rndNum;
+    }
 }
 
-export default GameScreen; 
+function GameScreen({ userNumber }) {
+    const initlaGuess = generateRandomeBetween(1, 100, userNumber);
+    const [currentGuess, setCurrentGuess] = useState(initlaGuess);
+
+
+    return (
+        <View style={style.screen}>
+            <Title>
+                Opponent's Guess
+            </Title>
+            <NumberContainer>{currentGuess}</NumberContainer>
+            <View>
+                <Text >Heigher or lower?</Text>
+                <View style={style.rowButtons}>
+                    <View style={style.flex1}>
+                        <PrimaryButton>+</PrimaryButton>
+                    </View>
+                    <View style={style.flex1}>
+                        <PrimaryButton>-</PrimaryButton>
+                    </View>
+                </View>
+            </View>
+            <View>
+                <Text >LOG REOUNDS</Text>
+            </View>
+        </View>
+
+    );
+}
+
+export default GameScreen;
+
+const style = StyleSheet.create({
+    textStyle: {
+        color: '#ddb52f',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        borderWidth: 2,
+        padding: 12,
+        borderColor: '#ddb52f',
+        marginTop: 12,
+
+    },
+    screen: {
+        padding: 24,
+    },
+    flex1: {
+        flex: 1,
+    },
+    rowButtons: {
+        width: '100%',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+});
