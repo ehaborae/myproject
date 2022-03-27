@@ -1,6 +1,6 @@
 
 import { Text, StyleSheet, View, Alert } from 'react-native';
-import Title from '../components/Title';
+import Title from '../components/Title.ios';
 
 import { useState, useEffect } from 'react';
 import NumberContainer from '../components/NumberContainer';
@@ -51,7 +51,7 @@ function GameScreen({ userNumber, onGameOver }) {
 
         if ((direction == 'lower' && currentGuess < userNumber) || (direction == 'greater' && currentGuess > userNumber)) {
 
-            Alert.alert("Don't lie!", "Enter a true number ", [{ text: 'Sorry', style: 'cancel' }]);
+            Alert.alert("Don't lie!", "Enter a true number", [{ text: 'Sorry', style: 'cancel' }]);
             return;
         }
 
