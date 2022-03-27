@@ -13,8 +13,8 @@ export default function App() {
 
   const [gameIsOver, setGameISOver] = useState(true);
 
-  function pickedNuberHandeler(pickedNuber) {
-    setUserNumber(pickedNuber);
+  function pickedNumberHandler(pickedNumber) {
+    setUserNumber(pickedNumber);
     console.log('game over false');
     setGameISOver(false);
   }
@@ -24,7 +24,7 @@ export default function App() {
     setGameISOver(true);
   }
 
-  let screen = <StartGameScreen onConfirmeNumber={pickedNuberHandeler} />;
+  let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler} />;
   if (userNumber) {
     screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />;
   }
@@ -48,7 +48,7 @@ export default function App() {
         imageStyle={style.rootScreen}
       >
 
-        <SafeAreaView>
+        <SafeAreaView style={style.safeArea}>
           {screen}
         </SafeAreaView>
 
@@ -64,5 +64,8 @@ const style = StyleSheet.create({
   rootScreen: {
     flex: 1,
     backgroundColor: Colors.primary,
+  },
+  safeArea: {
+    flex: 1,
   },
 });

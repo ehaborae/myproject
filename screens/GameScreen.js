@@ -5,14 +5,16 @@ import Title from '../components/Title';
 import { useState, useEffect } from 'react';
 import NumberContainer from '../components/NumberContainer';
 import PrimaryButton from '../components/PrimaryButton';
+import Card from '../components/Card';
+import InstructionText from '../components/InstructionText';
 
 
-function generateRandomeBetween(min, max, exclude) {
+function generateRandomBetween(min, max, exclude) {
 
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
     if (rndNum == exclude) {
-        return generateRandomeBetween(min, max, exclude);
+        return generateRandomBetween(min, max, exclude);
 
     } else {
         return rndNum;
@@ -23,11 +25,11 @@ let min = 1;
 let max = 100;
 
 function GameScreen({ userNumber, onGameOver }) {
-    const initlaGuess = generateRandomeBetween(1, 100, userNumber);
-    const [currentGuess, setCurrentGuess] = useState(initlaGuess);
+    const initialGuess = generateRandomBetween(1, 100, userNumber);
+    const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
     useEffect(() => {
-        console.log('is game over',typeof currentGuess, typeof userNumber, currentGuess,userNumber, currentGuess === userNumber);
+        console.log('is game over', typeof currentGuess, typeof userNumber, currentGuess, userNumber, currentGuess === userNumber);
         if (currentGuess === userNumber) {
             console.log('entered if')
             onGameOver();
@@ -50,7 +52,7 @@ function GameScreen({ userNumber, onGameOver }) {
             min = currentGuess + 1;
 
         }
-        const newRandNum = generateRandomeBetween(min, max, currentGuess);
+        const newRandNum = generateRandomBetween(min, max, currentGuess);
         setCurrentGuess(newRandNum);
     }
 
@@ -60,20 +62,21 @@ function GameScreen({ userNumber, onGameOver }) {
                 Opponent's Guess
             </Title>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <View>
-                <Text >Heigher or lower?</Text>
-                <View style={style.rowButtons}>
-                    <View style={style.flex1}>
-                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
-                    </View>
-                    <View style={style.flex1}>
-                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+            <Card>
+                <View>
+                    <InstructionText style={style.text}>Higher or lower?</InstructionText>
+                    {/* <Text style={style.text}>Higher or lower?</Text> */}
+                    <View style={style.rowButtons}>
+                        <View style={style.flex1}>
+                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+                        </View>
+                        <View style={style.flex1}>
+                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+                        </View>
                     </View>
                 </View>
-            </View>
-            <View>
-                <Text >LOG REOUNDS</Text>
-            </View>
+            </Card>
+
         </View>
 
     );
@@ -105,5 +108,12 @@ const style = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         flexDirection: 'row',
+    },
+    text: {
+        color: 'white',
+        textAlign: 'center',
+        marginVertical: 12,
+        marginHorizontal: 24,
+        fontSize: 24,
     },
 });

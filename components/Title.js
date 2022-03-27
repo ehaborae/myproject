@@ -1,4 +1,5 @@
 import { Text, StyleSheet } from 'react-native';
+import Colors from '../constants/colors';
 
 
 
@@ -9,7 +10,7 @@ export default Title;
 
 const style = StyleSheet.create({
     textStyle: {
-        color: 'white',
+        color: Colors.amper,
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 18,
@@ -17,8 +18,9 @@ const style = StyleSheet.create({
         textAlign: 'center',
         borderWidth: 2,
         padding: 12,
-        borderColor: 'white',
+        borderColor: Colors.amper,
         marginTop: 12,
+        borderRadius: 6,
 
     },
 });
