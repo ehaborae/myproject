@@ -26,15 +26,18 @@ function generateRandomBetween(min, max, exclude) {
 let min = 1;
 let max = 100;
 
+
 function GameScreen({ userNumber, onGameOver }) {
     const initialGuess = generateRandomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
+    const [guessRounds, setGuessRounds] = useState(1);
+
 
     useEffect(() => {
         console.log('is game over', typeof currentGuess, typeof userNumber, currentGuess, userNumber, currentGuess === userNumber);
         if (currentGuess === userNumber) {
             console.log('entered if')
-            onGameOver();
+            onGameOver(guessRounds);
         }
     }, [currentGuess, userNumber, onGameOver]);
 
@@ -61,6 +64,9 @@ function GameScreen({ userNumber, onGameOver }) {
         }
         const newRandNum = generateRandomBetween(min, max, currentGuess);
         setCurrentGuess(newRandNum);
+        let rounds = guessRounds;
+        setGuessRounds(rounds + 1);
+        console.log(guessRounds);
     }
 
     return (
@@ -85,6 +91,10 @@ function GameScreen({ userNumber, onGameOver }) {
                             </PrimaryButton>
                         </View>
                     </View>
+                </View>
+                <View>
+                    <Text style={style.roundText}>Rounds</Text>
+                    <Text style={style.text}>{guessRounds}</Text>
                 </View>
             </Card>
 
@@ -125,6 +135,12 @@ const style = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 12,
         marginHorizontal: 24,
+        fontSize: 24,
+    },
+    roundText: {
+        color: 'white',
+        textAlign: 'left',
+        marginVertical: 8,
         fontSize: 24,
     },
 });
