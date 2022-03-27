@@ -27,7 +27,9 @@ function GameScreen({ userNumber, onGameOver }) {
     const [currentGuess, setCurrentGuess] = useState(initlaGuess);
 
     useEffect(() => {
+        console.log('is game over',typeof currentGuess, typeof userNumber, currentGuess,userNumber, currentGuess === userNumber);
         if (currentGuess === userNumber) {
+            console.log('entered if')
             onGameOver();
         }
     }, [currentGuess, userNumber, onGameOver]);
