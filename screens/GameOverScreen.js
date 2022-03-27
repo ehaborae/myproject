@@ -63,13 +63,11 @@ const style = StyleSheet.create({
         height: 300,
         borderRadius: 150,
         borderWidth: 3,
-        borderColor: Colors.amper,
-        // flex: 1,
+        borderColor: Colors.primary,
     },
     imageStyle: {
         width: '100%',
         height: '100%',
-        // flex: 1,
     },
     infoText: {
         margin: 8,

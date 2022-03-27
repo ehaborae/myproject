@@ -26,9 +26,10 @@ export default function App() {
     setGameIsOver(false);
   }
 
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds) {
     console.log('game over true');
     setGameIsOver(true);
+    setRoundNumber(numberOfRounds);
   }
 
   let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler} />;
