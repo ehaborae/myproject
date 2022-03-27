@@ -2,7 +2,7 @@
 import { Text, StyleSheet, View, Alert } from 'react-native';
 import Title from '../components/Title';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NumberContainer from '../components/NumberContainer';
 import PrimaryButton from '../components/PrimaryButton';
 
@@ -22,15 +22,22 @@ function generateRandomeBetween(min, max, exclude) {
 let min = 1;
 let max = 100;
 
-function GameScreen({ userNumber }) {
-    const initlaGuess = generateRandomeBetween(min, max, userNumber);
+function GameScreen({ userNumber, onGameOver }) {
+    const initlaGuess = generateRandomeBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initlaGuess);
+
+    useEffect(() => {
+        if (currentGuess === userNumber) {
+            onGameOver();
+        }
+    }, [currentGuess, userNumber, onGameOver]);
+
 
     function nextGuessHandler(direction) {
 
         if ((direction == 'lower' && currentGuess < userNumber) || (direction == 'greater' && currentGuess > userNumber)) {
 
-            Alert.alert("Don't lie!","test ", [{ text: 'Sorry', style: 'cancel' }]);
+            Alert.alert("Don't lie!", "Enter a true number ", [{ text: 'Sorry', style: 'cancel' }]);
             return;
         }
 
