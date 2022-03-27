@@ -4,7 +4,7 @@ import InstructionText from '../components/InstructionText';
 import PrimaryButton from '../components/PrimaryButton';
 import Colors from '../constants/colors';
 
-function GameOverScreen() {
+function GameOverScreen({ roundNumber, userNumber, onStartNewGame }) {
     return (
         <View style={style.screenStyle}>
             <Card>
@@ -25,14 +25,14 @@ function GameOverScreen() {
             <Text style={style.infoText}>
                 Yor phone needed
                 <Text style={style.dataText}>
-                    X
+                    {roundNumber}
                 </Text>
                 rounds to get the number
                 <Text style={style.dataText}>
-                    Y
+                    {userNumber}
                 </Text>
             </Text>
-            <PrimaryButton>Start new game</PrimaryButton>
+            <PrimaryButton onPress={onStartNewGame}>Start new game</PrimaryButton>
         </View>
 
     );

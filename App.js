@@ -11,17 +11,24 @@ export default function App() {
 
   const [userNumber, setUserNumber] = useState();
 
-  const [gameIsOver, setGameISOver] = useState(true);
+  const [gameIsOver, setGameIsOver] = useState(true);
+
+  const [roundNumber, setRoundNumber] = useState(0);
+
+  function restartGameHandler() {
+    setUserNumber(null);
+    setRoundNumber(0)
+  }
 
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
     console.log('game over false');
-    setGameISOver(false);
+    setGameIsOver(false);
   }
 
   function gameOverHandler() {
     console.log('game over true');
-    setGameISOver(true);
+    setGameIsOver(true);
   }
 
   let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler} />;
@@ -30,7 +37,7 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen userNumber={userNumber} roundNumber={roundNumber} onStartNewGame={restartGameHandler} />;
   }
 
 
