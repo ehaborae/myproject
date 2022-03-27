@@ -7,6 +7,8 @@ import NumberContainer from '../components/NumberContainer';
 import PrimaryButton from '../components/PrimaryButton';
 import Card from '../components/Card';
 import InstructionText from '../components/InstructionText';
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 function generateRandomBetween(min, max, exclude) {
@@ -68,10 +70,14 @@ function GameScreen({ userNumber, onGameOver }) {
                     {/* <Text style={style.text}>Higher or lower?</Text> */}
                     <View style={style.rowButtons}>
                         <View style={style.flex1}>
-                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                                <Ionicons name='remove' size={24} color={'white'} />
+                            </PrimaryButton>
                         </View>
                         <View style={style.flex1}>
-                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+                            <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                                <Ionicons name='add' size={24} color={'white'} />
+                            </PrimaryButton>
                         </View>
                     </View>
                 </View>
